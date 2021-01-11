@@ -1,0 +1,7 @@
+.idea
+target
+*.iml
+data/wordcount/output
+
+# too big
+data/access.log-20190131
