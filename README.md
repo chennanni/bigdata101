@@ -12,6 +12,8 @@ Hadoop
 - HdfsTest: 基本 HDFS 读写功能
 - HBaseTest: 基本 HBase 读写功能
 - WordCountApp: 经典 Map Reduce 案例
+- PageStatApp: 在 WC 基础之上，处理日志文件，统计每个页面的访问量
+- ETLApp: 对日志文件进行简单数据清洗
 
 Spark
 - HelloWorld: 入门
