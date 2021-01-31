@@ -2,6 +2,7 @@
 target
 *.iml
 data/wordcount/output
+data/etl/output/*
 
 # too big
-data/access.log-20190131
+data/spark/access.log-20190131

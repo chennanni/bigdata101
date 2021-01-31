@@ -7,7 +7,7 @@ object HelloWorld {
   def main(args: Array[String]) {
 
     // input file
-    val logFile = "D:/codebase/hadoopez/data/sample_file.txt"
+    val logFile = "D:/codebase/bigdataez/data/spark/sample_file.txt"
 
     // create spark
     val spark = SparkSession.builder

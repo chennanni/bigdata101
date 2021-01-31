@@ -1,6 +1,7 @@
-package max.learn.hdfs;
+package max.learn.hdfs.wordcount;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -28,6 +29,14 @@ public class WordCountLocalApp {
     public static void main(String[] args) throws Exception{
         Configuration configuration = new Configuration();
 
+        // 如果输出目录已经存在，则先删除
+        FileSystem fileSystem = FileSystem.get(configuration);
+        Path outputPath = new Path("data/wordcount/output");
+        if(fileSystem.exists(outputPath)) {
+            fileSystem.delete(outputPath,true);
+        }
+        fileSystem.close();
+
         // 创建一个Job
         Job job = Job.getInstance(configuration);
 
@@ -53,6 +62,7 @@ public class WordCountLocalApp {
         // 提交job
         boolean result = job.waitForCompletion(true);
 
+        System.out.println("DONE, check output at: data/wordcount/output");
         System.exit(result ? 0 : -1);
 
     }

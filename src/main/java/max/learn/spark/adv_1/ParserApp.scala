@@ -21,11 +21,11 @@ object ParserApp {
     val rdd = spark.sparkContext.parallelize(List(1,2,3,4))
     rdd.collect().foreach(println)
 
-    val inputFile = "D:/codebase/hadoopez/data/test-access.log"
+    val inputFile = "D:/codebase/bigdataez/data/spark/test-access.log"
 
     // use a 3rd lib to format the file, find code here: https://coding.imooc.com/learn/list/357.html
     println("2. format file")
-    System.setProperty("icode", "B42880DE94C66CC3")
+    System.setProperty("icode", "D2A330402E34BEF2")
     var logDF = spark.read
       .format("com.imooc.bigdata.spark.pk")
       .option("path",inputFile)

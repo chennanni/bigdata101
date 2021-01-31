@@ -31,15 +31,15 @@ object LogEtlApp extends Logging {
   def main(args: Array[String]): Unit = {
 
     // 获取处理日期
-    if(args.length != 1) {
-      println("Usage: ImoocLogApp <time>")
-      System.exit(1)
-    }
-    val day = args(0)
-    //val day = "20190130"
+//    if(args.length != 1) {
+//      println("Usage: ImoocLogApp <time>")
+//      System.exit(1)
+//    }
+    //val day = args(0)
+    val day = "20190130"
 
     // 获取目标文件
-    val input = "D:/codebase/hadoopez/data/test-access.log"
+    val input = "D:/codebase/bigdataez/data/spark/test-access.log"
     //val input = s"hdfs://hadoop000:8020/access/$day/*"
 
     // 创建 Spark Session
@@ -50,7 +50,7 @@ object LogEtlApp extends Logging {
     //val spark = SparkSession.builder().getOrCreate()
 
     // 调用现有 lib 预处理文件，code 在这里 https://coding.imooc.com/learn/list/357.html
-    System.setProperty("icode", "F8619EB02213D8BD")
+    System.setProperty("icode", "D2A330402E34BEF2")
     var logDF = spark.read.format("com.imooc.bigdata.spark.pk").option("path",input).load()
 
     // 额外处理时间 field

@@ -1,4 +1,4 @@
-package max.learn.hdfs;
+package max.learn.hdfs.wordcount;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
