@@ -23,3 +23,8 @@ Spark
 
 Zookeeper
 - ZkClient: Zookeeper 客户端实现基本 CRUD 功能
+
+Scala
+- FunctionApp
+- ArrayApp
+- ListApp
