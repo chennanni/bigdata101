@@ -8,6 +8,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -27,6 +28,9 @@ public class WordCountLocalApp {
     }
 
     public static void main(String[] args) throws Exception{
+
+        Logger logger = Logger.getLogger(WordCountLocalApp.class);
+
         Configuration configuration = new Configuration();
 
         // 如果输出目录已经存在，则先删除
@@ -61,6 +65,8 @@ public class WordCountLocalApp {
 
         // 提交job
         boolean result = job.waitForCompletion(true);
+
+        logger.info("this is a test log");
 
         System.out.println("DONE, check output at: data/wordcount/output");
         System.exit(result ? 0 : -1);
