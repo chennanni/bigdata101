@@ -1,4 +1,4 @@
-package max.learn.scala
+package max.learn.scala.basic
 
 object OptionApp extends App {
 

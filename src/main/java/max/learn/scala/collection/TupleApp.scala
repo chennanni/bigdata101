@@ -1,4 +1,4 @@
-package max.learn.scala
+package max.learn.scala.collection
 
 object TupleApp extends App{
 
