@@ -25,6 +25,8 @@ Zookeeper
 - ZkClient: Zookeeper 客户端实现基本 CRUD 功能
 
 Scala
-- FunctionApp
-- ArrayApp
-- ListApp
+- Collection 关键字
+- Function 关键字
+- Iimplicit 关键字
+- Match 操作
+- IO 操作
