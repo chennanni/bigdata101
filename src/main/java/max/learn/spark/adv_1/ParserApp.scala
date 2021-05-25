@@ -7,6 +7,9 @@ import org.apache.spark.sql.SparkSession
 
 /**
   * 使用 Spark 进行简单的数据清洗 （第三方类库 + 一个简单的手动实现）
+  *
+  * 可以本地运行，只需配置一下课程lib调用口令代码
+  *
   */
 object ParserApp {
 
@@ -14,7 +17,6 @@ object ParserApp {
 
     // create spark
     val spark = SparkSession.builder().appName("TestApp").master("local[2]").getOrCreate()
-
 
     // print a dummy list
     println("1. a dummy list")
@@ -25,7 +27,7 @@ object ParserApp {
 
     // use a 3rd lib to format the file, find code here: https://coding.imooc.com/learn/list/357.html
     println("2. format file")
-    System.setProperty("icode", "D2A330402E34BEF2")
+    System.setProperty("icode", "7C151EF3877A82AF")
     var logDF = spark.read
       .format("com.imooc.bigdata.spark.pk")
       .option("path",inputFile)

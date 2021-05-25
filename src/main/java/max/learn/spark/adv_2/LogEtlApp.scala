@@ -25,8 +25,25 @@ import org.apache.spark.sql.SparkSession
   * 需要传给我们的 ImoocLogApp 一个处理时间：yyyyMMdd
   * HBase表：一天一个，logs_yyyyMMdd
   *
+  * 改进点2：使用 Spark submit 在服务器上提交作业，禁用 WAL 加速数据处理；参考 coding357/ImoocLogV2App
+  *   put.setDurability(Durability.SKIP_WAL)
+  *   flushTable(tableName, conf)
+  * 改进点3：使用 Spark 直接生成 Hfile，最后再 load 进 Hbase；参考 coding357/ImoocLogV3App
+  *
   */
 object LogEtlApp extends Logging {
+
+  // need to start HBase $ Zookeeper in Server
+  val hbase_path = "hdfs://hadoop000:9000/hbase"
+  val hbase_file = "hdfs://hadoop000:9000/etl/access/hbase"
+  val zk_path = "hadoop000:2181"
+
+  // 课程 lib 代码，在这里 https://coding.imooc.com/learn/list/357.html
+  val code = "7C151EF3877A82AF"
+
+  // 获取目标文件
+  val input = "D:/codebase/bigdataez/data/spark/test-access.log"
+  //val input = s"hdfs://hadoop000:8020/access/$day/*"
 
   def main(args: Array[String]): Unit = {
 
@@ -38,10 +55,6 @@ object LogEtlApp extends Logging {
     //val day = args(0)
     val day = "20190130"
 
-    // 获取目标文件
-    val input = "D:/codebase/bigdataez/data/spark/test-access.log"
-    //val input = s"hdfs://hadoop000:8020/access/$day/*"
-
     // 创建 Spark Session
     val spark = SparkSession.builder()
       .config("spark.serializer","org.apache.spark.serializer.KryoSerializer")
@@ -49,8 +62,8 @@ object LogEtlApp extends Logging {
       .getOrCreate()
     //val spark = SparkSession.builder().getOrCreate()
 
-    // 调用现有 lib 预处理文件，code 在这里 https://coding.imooc.com/learn/list/357.html
-    System.setProperty("icode", "D2A330402E34BEF2")
+    // 调用现有 lib 预处理文件
+    System.setProperty("icode", code)
     var logDF = spark.read.format("com.imooc.bigdata.spark.pk").option("path",input).load()
 
     // 额外处理时间 field
@@ -122,8 +135,8 @@ object LogEtlApp extends Logging {
 
     // 配置 Hbase, ZK
     val conf = new Configuration()
-    conf.set("hbase.rootdir","hdfs://hadoop000:9000/hbase")
-    conf.set("hbase.zookeeper.quorum","hadoop000:2181")
+    conf.set("hbase.rootdir",hbase_path)
+    conf.set("hbase.zookeeper.quorum",zk_path)
 
     // 设置写数据到哪个表中
     val tableName = createTable(day, conf)
@@ -131,7 +144,7 @@ object LogEtlApp extends Logging {
 
     // 保存数据
     hbaseInfoRDD.saveAsNewAPIHadoopFile(
-      "hdfs://hadoop000:9000/etl/access/hbase",
+      hbase_file,
       classOf[ImmutableBytesWritable],
       classOf[Put],
       classOf[TableOutputFormat[ImmutableBytesWritable]],
