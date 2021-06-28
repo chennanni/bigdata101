@@ -24,7 +24,7 @@ import org.apache.spark.sql.SparkSession
   * 批处理：一天处理一次，今天凌晨来处理昨天的数据
   * 需要传给我们的 ImoocLogApp 一个处理时间：yyyyMMdd
   * HBase表：一天一个，logs_yyyyMMdd
-  *
+  *p
   * 改进点2：使用 Spark submit 在服务器上提交作业，禁用 WAL 加速数据处理；参考 coding357/ImoocLogV2App
   *   put.setDurability(Durability.SKIP_WAL)
   *   flushTable(tableName, conf)

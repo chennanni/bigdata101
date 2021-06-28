@@ -12,7 +12,7 @@ import org.apache.spark.internal.Logging
 import org.apache.spark.sql.SparkSession
 
 /**
-  * （接着上一个应用，数据 ETL 存到 HDFS / HBase 之后，后续需要做统计分析）
+  * （接着上一个应用 LogEtlApp ，数据 ETL 存到 HDFS / HBase 之后，后续需要做统计分析）
   *
   * 使用Spark对HBase中的数据做统计分析操作
   *

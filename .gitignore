@@ -3,6 +3,7 @@ target
 *.iml
 data/wordcount/output
 data/etl/output/*
+*.log
 
 # too big
 data/spark/access.log-20190131

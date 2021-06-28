@@ -4,7 +4,8 @@
 
 项目目录说明：
 - data: 存放测试数据
-- src: 存放代码
+- src/java: 存放代码
+- src/resources: 存放配置文件
 
 ## 项目
 
@@ -16,10 +17,11 @@ Hadoop
 - ETLApp: 对日志文件进行简单数据清洗
 
 Spark
-- HelloWorld: 入门
-- ParserApp: 基本的数据清洗
-- LogEtlApp: 大致的 ETL 流程
-- AnalysisApp: 后续数据分析
+- basic/HelloWorld: 入门
+- adv_1/ParserApp: 基本的数据清洗
+- adv_2/LogEtlApp: 大致的 ETL 流程
+- adv_3/AnalysisApp: 后续数据分析
+- streaming/app/StreamingAnalysisApp: 处理实时流数据
 
 Zookeeper
 - ZkClient: Zookeeper 客户端实现基本 CRUD 功能
