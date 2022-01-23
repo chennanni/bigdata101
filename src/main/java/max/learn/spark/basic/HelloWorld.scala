@@ -5,7 +5,7 @@ import org.apache.spark.sql.SparkSession
 // read one file from local system and count a,b occurrences using Spark
 // 可以本地运行
 object HelloWorld {
-  def main(args: Array[String]) {
+  def main(args: Array[String]) = {
 
     // input file
     val logFile = "D:/codebase/bigdataez/data/spark/sample_file.txt"
