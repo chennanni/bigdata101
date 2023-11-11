@@ -25,7 +25,3 @@ Spark
 
 Zookeeper
 - ZkClient: Zookeeper 客户端实现基本 CRUD 功能
-
-## 流程
-
-![spark_app_flow_1](spark_app_flow_1.png)
